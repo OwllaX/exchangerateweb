@@ -18,7 +18,7 @@ export class AppComponent {
   }
 
   getData() {
-    this.http.get("http://test-archive:8072/business/GetExchangeRateWebSGIF").subscribe(data => {
+    this.http.get("http://172.30.1.89:8072/business/GetExchangeRateWebSGIF").subscribe(data => {
       console.log(data);
       this.dataExchange = JSON.parse(JSON.stringify(data));
     }); 

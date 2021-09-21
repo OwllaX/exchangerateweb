@@ -12,7 +12,7 @@
 
   <body>
       <nav class="navbar navbar-light navbar-expand bg-light navigation-clean">
-          <div class="container"><button class="navbar-toggler" data-bs-toggle="collapse"></button><img class="img-fluid align-self-center m-auto" src="assets/img/SGIFlogo.jpeg" width="300"></div>
+          <div class="container"><button class="navbar-toggler" data-bs-toggle="collapse"></button><img class="img-fluid align-self-center m-auto" src="assets/img/SGIFLogoFull.png" width="300"></div>
       </nav>
       <header class="text-center text-white masthead" style="background: #125699;padding-top: 10px;padding-bottom: 10px;">
           <div class="d-inline-flex" style="background: #125699;"><span>Rige:&nbsp;</span><strong>{{ datenow | date }}<br></strong></div>
@@ -33,7 +33,7 @@
                               <tbody *ngIf="dataExchange">
                                   <tr *ngFor="let data of dataExchange">
                                       <td>{{ data['EXCHANGETYPE'] }}</td>
-                                      <td>{{ data['CURRENCYTOEXCHANGE'] }} {{ data['BUY'] }}</td>
+                                      <td>{{ data['CURRENCYTOEXCHANGE'] }} {{ data['BUY'] == 0 ? '-' : data['BUY'] }}</td>
                                       <td>{{ data['CURRENCYTOEXCHANGE'] }} {{ data['SELL'] == 0 ? '-' : data['SELL'] }}</td>
                                   </tr>
                               </tbody>
