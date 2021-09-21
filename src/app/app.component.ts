@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'exchangerateweb';
+  datenow = Date.now();
+  dataExchange: [] = [];
+
+  constructor (private http: HttpClient) {}
+
+  ngOnInit() {
+    this.getData();
+  }
+
+  getData() {
+    this.http.get("http://test-archive:8072/business/GetExchangeRateWebSGIF").subscribe(data => {
+      console.log(data);
+      this.dataExchange = JSON.parse(JSON.stringify(data));
+    }); 
+  }
 }
