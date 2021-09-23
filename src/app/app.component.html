@@ -1,82 +1,128 @@
 <!DOCTYPE html>
 <html>
-  <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-      <title>GI Foreign</title>
-      <meta name="description" content="Casa de Cambio">
-      <meta property="og:type" content="">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
-  </head>
 
-  <body>
-      <nav class="navbar navbar-light navbar-expand bg-light navigation-clean">
-          <div class="container"><button class="navbar-toggler" data-bs-toggle="collapse"></button><img class="img-fluid align-self-center m-auto" src="assets/img/SGIFLogoFull.png" width="300"></div>
-      </nav>
-      <header class="text-center text-white masthead" style="background: #125699;padding-top: 10px;padding-bottom: 10px;">
-          <div class="d-inline-flex" style="background: #125699;"><span>Rige:&nbsp;</span><strong>{{ datenow | date }}<br></strong></div>
-      </header>
-      <section class="text-center bg-light features-icons" style="padding-top: 25px;padding-bottom: 25px;height: 350px;">
-          <div class="container" style="height: 300px;">
-              <div class="row justify-content-center" style="height: 300px;">
-                  <div class="col-lg-4" style="width: 400px;">
-                      <div class="table-responsive">
-                          <table class="table">
-                              <thead style="background: #f0ef55;">
-                                  <tr>
-                                      <th>Moneda</th>
-                                      <th>Compra</th>
-                                      <th>Venta</th>
-                                  </tr>
-                              </thead>
-                              <tbody *ngIf="dataExchange">
-                                  <tr *ngFor="let data of dataExchange">
-                                      <td>{{ data['EXCHANGETYPE'] }}</td>
-                                      <td>{{ data['CURRENCYTOEXCHANGE'] }} {{ data['BUY'] == 0 ? '-' : data['BUY'] }}</td>
-                                      <td>{{ data['CURRENCYTOEXCHANGE'] }} {{ data['SELL'] == 0 ? '-' : data['SELL'] }}</td>
-                                  </tr>
-                              </tbody>
-                          </table>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </section>
-      <section class="text-center text-white call-to-action" style="background: #125699;padding-top: 50px;padding-bottom: 50px;">
-          <div class="overlay"></div>
-          <div class="container">
-              <div class="row">
-                  <div class="col-xl-9 mx-auto position-relative">
-                      <h2 class="mb-4">Información</h2>
-                  </div>
-                  <div class="col-md-10 col-lg-8 col-xl-7 mx-auto position-relative">
-                      <div class="row" style="padding-bottom: 10px;">
-                          <div class="col"><span>Cédula Jurídica:&nbsp;<strong>3-101-670906</strong></span></div>
-                      </div>
-                      <div class="row" style="padding-bottom: 10px;">
-                          <div class="col"><span>Dirección de Correo:&nbsp;<strong>info@grupointeca.com</strong></span></div>
-                      </div>
-                      <div class="row" style="padding-bottom: 10px;">
-                          <div class="col"><span>Teléfono:&nbsp;<strong>2217-3635</strong></span></div>
-                      </div>
-                      <div class="row" style="padding-bottom: 10px;">
-                          <div class="col"><span>Ubicación:&nbsp;<a href="https://goo.gl/maps/senm2wZdDTU6xUSUA" style="color: #ffffff;"><strong>Carretera Interamericana Cartago entre Avenida 34 y 52. Tejar, El Guarco, Costa Rica - 30801</strong></a></span></div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </section>
-      <footer class="bg-light footer" style="padding-bottom: 0px;">
-          <div class="container">
-              <div class="row" style="padding-bottom: 10px; padding-top: 5px;">
-                  <div class="col-lg-6 text-center text-lg-start my-auto h-100">
-                      <p class="text-muted small mb-4 mb-lg-0">© GI Foreign 2021. All Rights Reserved.</p>
-                  </div>
-              </div>
-          </div>
-          <div class="d-flex" style="height: 100px;background: #125699;min-height: 50px;max-height: 145px;opacity: 1;"></div>
-      </footer>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  </body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>GI Foreign</title>
+    <meta name="description" content="Casa de Cambio">
+    <meta property="og:type" content="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand bg-light navigation-clean">
+        <div class="container"><button class="navbar-toggler" data-bs-toggle="collapse"></button><img class="img-fluid align-self-center m-auto" src="../assets/img/SGIFLogoFull.png" width="300"></div>
+    </nav>
+    <header class="text-center text-white masthead" style="background: #f0ef55;padding-top: 10px;padding-bottom: 10px;">
+        <div class="d-inline-flex" style="background: #f0ef55;color: #000000;"><span>Cédula Jurídica:&nbsp;</span><strong>3-101-670906<br></strong></div>
+    </header>
+    <header class="text-center text-white masthead" style="background: #f0ef55;padding-top: 10px;padding-bottom: 10px;">
+        <div class="d-inline-flex" style="background: #f0ef55;color: #000000;"><span>Código Autorizado:&nbsp;</span><strong>XXX-XXX-XXX<br></strong></div>
+    </header>
+    <header class="text-center text-white masthead" style="background: #125699;padding-top: 10px;padding-bottom: 10px;">
+        <div class="d-inline-flex" style="background: #125699;"><span>Rige:&nbsp;</span><strong>{{ datenow | date }}<br></strong></div>
+    </header>
+    <section class="text-center bg-light features-icons" style="padding-top: 25px;padding-bottom: 25px;height: 350px;">
+        <div class="container" style="height: 300px;">
+            <div class="row justify-content-center" style="height: 300px;">
+                <div class="col-lg-4" style="width: 400px;">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead style="background: #f0ef55;">
+                                <tr>
+                                    <th>Moneda</th>
+                                    <th>Compra</th>
+                                    <th>Venta</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="dataExchange">
+                                <tr *ngFor="let data of dataExchange">
+                                    <td>{{ data['EXCHANGETYPETXT'] }}</td>
+                                    <td>{{ data['BUY'] == 0 ? '-' : (data['BUY'] | currency: data['CURRENCYTOEXCHANGE'] : 'symbol-narrow') }}</td>
+                                    <td>{{ data['SELL'] == 0 ? '-' : (data['SELL'] | currency: data['CURRENCYTOEXCHANGE'] : 'symbol-narrow') }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="text-center bg-light features-icons" style="padding-top: 25px;padding-bottom: 25px;height: 300px;">
+        <div class="container" style="height: 300px;">
+            <div class="row justify-content-center" style="height: 300px;">
+                <div class="col-lg-4" style="width: 400px;">
+                    <div *ngIf="dataExchange" onclick="document.getElementById('form1').reset();document.getElementById('form2').reset();">
+                        <mat-tab-group>
+                            <mat-tab *ngFor="let data of dataExchange" label="{{ data['EXCHANGETYPETXT'] }}">
+                              <div class="datos">
+                                <form id="form1" style="padding-top: 5px;" [hidden]="!hideBuySell">
+                                    <p><strong>Calculadora Compra</strong></p>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1" style="width: 125px; background: #f0ef55; color: black;">{{ (1 | currency: data['EXCHANGETYPE'] : 'symbol-narrow') }}</span>
+                                        <input (input)="changeBuyCalc1($event, SpanBuy.getAttribute('title'))" [value]="BuyCalc1 == 0 ? '' : BuyCalc1" class="form-control" type="text" placeholder="1">
+                                    </div>
+                                    <mat-icon>swap_vert</mat-icon>
+                                    <div class="input-group mb-3">
+                                        <span #SpanBuy class="input-group-text" id="basic-addon1" style="width: 125px; background: #f0ef55; color: black;" title="{{ data['BUY'] }}">{{ (data['BUY'] == 0 ? '-' : data['BUY'] | currency: data['CURRENCYTOEXCHANGE'] : 'symbol-narrow') }}</span>
+                                        <input (input)="changeBuyCalc2($event, SpanBuy.getAttribute('title'))" [value]="BuyCalc2 == 0 ? '' : BuyCalc2" class="form-control" type="text" placeholder="{{ data['BUY'] == 0 ? '-' : data['BUY'] }}">
+                                    </div>
+                                </form>
+                                <form id="form2" style="padding-top: 5px;" [hidden]="hideBuySell">
+                                    <p><strong>Calculadora Venta</strong></p>
+                                    <div class="input-group mb-3">
+                                        <span #SpanSell class="input-group-text" id="basic-addon1" style="width: 125px; background: #f0ef55; color: black;" title="{{ data['SELL'] == 0 ? data['BUY'] : data['SELL'] }}">{{ data['SELL'] == 0 ? (data['BUY'] | currency: data['CURRENCYTOEXCHANGE'] : 'symbol-narrow') : (data['SELL'] | currency: data['CURRENCYTOEXCHANGE'] : 'symbol-narrow') }}</span>
+                                        <input (input)="changeSellCalc1($event, SpanSell.getAttribute('title'))" [value]="SellCalc1 == 0 ? '' : SellCalc1" class="form-control" type="text" placeholder="{{ data['SELL'] == 0 ? data['BUY'] : data['SELL'] }}">
+                                    </div>
+                                    <mat-icon>swap_vert</mat-icon>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1" style="width: 125px; background: #f0ef55; color: black;">{{ (1 | currency: data['EXCHANGETYPE'] : 'symbol-narrow') }}</span>
+                                        <input (input)="changeSellCalc2($event, SpanSell.getAttribute('title'))" [value]="SellCalc2 == 0 ? '' : SellCalc2" class="form-control" type="text" placeholder="1">
+                                    </div>
+                                </form>
+                                <button style="background: #125699;" (click)="this.hideBuySell = !hideBuySell" class="btn btn-primary">Cambiar entre Compra y Venta</button>
+                              </div>
+                            </mat-tab>                            
+                          </mat-tab-group>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="text-center text-white call-to-action" style="background: #125699;padding-top: 50px;padding-bottom: 50px;">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 mx-auto position-relative">
+                    <h2 class="mb-4">Información</h2>
+                </div>
+                <div class="col-md-10 col-lg-8 col-xl-7 mx-auto position-relative">
+                    <div class="row" style="padding-bottom: 10px;">
+                        <div class="col"><span>Dirección de Correo:&nbsp;<strong>info@grupointeca.com</strong></span></div>
+                    </div>
+                    <div class="row" style="padding-bottom: 10px;">
+                        <div class="col"><span>Teléfono:&nbsp;<strong>2217-3635</strong></span></div>
+                    </div>
+                    <div class="row" style="padding-bottom: 10px;">
+                        <div class="col"><span>Ubicación:&nbsp;<a href="https://goo.gl/maps/senm2wZdDTU6xUSUA" style="color: #ffffff;"><strong>Carretera Interamericana Cartago entre Avenida 34 y 52. Tejar, El Guarco, Costa Rica - 30801</strong></a></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-light footer" style="padding-bottom: 0px;">
+        <div class="container">
+            <div class="row" style="padding-bottom: 10px;">
+                <div class="col-lg-6 text-center text-lg-start my-auto h-100">
+                    <p class="text-muted small mb-4 mb-lg-0">© GI Foreign 2021. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex" style="height: 100px;background: #125699;min-height: 50px;max-height: 145px;opacity: 1;"></div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+
 </html>
