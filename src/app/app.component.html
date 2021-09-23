@@ -24,7 +24,7 @@
     <header class="text-center text-white masthead" style="background: #125699;padding-top: 10px;padding-bottom: 10px;">
         <div class="d-inline-flex" style="background: #125699;"><span>Rige:&nbsp;</span><strong>{{ datenow | date }}<br></strong></div>
     </header>
-    <section class="text-center bg-light features-icons" style="padding-top: 25px;padding-bottom: 25px;height: 350px;">
+    <section class="text-center bg-light features-icons" style="padding-top: 25px;padding-bottom: 25px;height: 300px;">
         <div class="container" style="height: 300px;">
             <div class="row justify-content-center" style="height: 300px;">
                 <div class="col-lg-4" style="width: 400px;">
@@ -54,32 +54,32 @@
         <div class="container" style="height: 300px;">
             <div class="row justify-content-center" style="height: 300px;">
                 <div class="col-lg-4" style="width: 400px;">
-                    <div *ngIf="dataExchange" onclick="document.getElementById('form1').reset();document.getElementById('form2').reset();">
+                    <div *ngIf="dataExchange">
                         <mat-tab-group>
-                            <mat-tab *ngFor="let data of dataExchange" label="{{ data['EXCHANGETYPETXT'] }}">
+                            <mat-tab id="rolTab" *ngFor="let data of dataExchange" label="{{ data['EXCHANGETYPETXT'] }}">
                               <div class="datos">
-                                <form id="form1" style="padding-top: 5px;" [hidden]="!hideBuySell">
+                                <form style="padding-top: 5px;" [hidden]="!hideBuySell" onfocusout="document.getElementById('A1').value = ''; document.getElementById('A2').value = '';" (focusout)="resetAll()">
                                     <p><strong>Calculadora Compra</strong></p>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="basic-addon1" style="width: 125px; background: #f0ef55; color: black;">{{ (1 | currency: data['EXCHANGETYPE'] : 'symbol-narrow') }}</span>
-                                        <input (input)="changeBuyCalc1($event, SpanBuy.getAttribute('title'))" [value]="BuyCalc1 == 0 ? '' : BuyCalc1" class="form-control" type="text" placeholder="1">
+                                        <input id='A1' (input)="changeBuyCalc1($event, SpanBuy.getAttribute('title'))" [value]="BuyCalc1 == 0 ? '' : BuyCalc1" class="form-control" type="text" placeholder="1">
                                     </div>
                                     <mat-icon>swap_vert</mat-icon>
                                     <div class="input-group mb-3">
                                         <span #SpanBuy class="input-group-text" id="basic-addon1" style="width: 125px; background: #f0ef55; color: black;" title="{{ data['BUY'] }}">{{ (data['BUY'] == 0 ? '-' : data['BUY'] | currency: data['CURRENCYTOEXCHANGE'] : 'symbol-narrow') }}</span>
-                                        <input (input)="changeBuyCalc2($event, SpanBuy.getAttribute('title'))" [value]="BuyCalc2 == 0 ? '' : BuyCalc2" class="form-control" type="text" placeholder="{{ data['BUY'] == 0 ? '-' : data['BUY'] }}">
+                                        <input id="A2" (input)="changeBuyCalc2($event, SpanBuy.getAttribute('title'))" [value]="BuyCalc2 == 0 ? '' : BuyCalc2" class="form-control" type="text" placeholder="{{ data['BUY'] == 0 ? '-' : data['BUY'] }}">
                                     </div>
                                 </form>
-                                <form id="form2" style="padding-top: 5px;" [hidden]="hideBuySell">
+                                <form style="padding-top: 5px;" [hidden]="hideBuySell" onfocusout="document.getElementById('B1').value = ''; document.getElementById('B2').value = '';" (focusout)="resetAll()">
                                     <p><strong>Calculadora Venta</strong></p>
                                     <div class="input-group mb-3">
                                         <span #SpanSell class="input-group-text" id="basic-addon1" style="width: 125px; background: #f0ef55; color: black;" title="{{ data['SELL'] == 0 ? data['BUY'] : data['SELL'] }}">{{ data['SELL'] == 0 ? (data['BUY'] | currency: data['CURRENCYTOEXCHANGE'] : 'symbol-narrow') : (data['SELL'] | currency: data['CURRENCYTOEXCHANGE'] : 'symbol-narrow') }}</span>
-                                        <input (input)="changeSellCalc1($event, SpanSell.getAttribute('title'))" [value]="SellCalc1 == 0 ? '' : SellCalc1" class="form-control" type="text" placeholder="{{ data['SELL'] == 0 ? data['BUY'] : data['SELL'] }}">
+                                        <input id="B1" (input)="changeSellCalc1($event, SpanSell.getAttribute('title'))" [value]="SellCalc1 == 0 ? '' : SellCalc1" class="form-control" type="text" placeholder="{{ data['SELL'] == 0 ? data['BUY'] : data['SELL'] }}">
                                     </div>
                                     <mat-icon>swap_vert</mat-icon>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="basic-addon1" style="width: 125px; background: #f0ef55; color: black;">{{ (1 | currency: data['EXCHANGETYPE'] : 'symbol-narrow') }}</span>
-                                        <input (input)="changeSellCalc2($event, SpanSell.getAttribute('title'))" [value]="SellCalc2 == 0 ? '' : SellCalc2" class="form-control" type="text" placeholder="1">
+                                        <input id="B2" (input)="changeSellCalc2($event, SpanSell.getAttribute('title'))" [value]="SellCalc2 == 0 ? '' : SellCalc2" class="form-control" type="text" placeholder="1">
                                     </div>
                                 </form>
                                 <button style="background: #125699;" (click)="this.hideBuySell = !hideBuySell" class="btn btn-primary">Cambiar entre Compra y Venta</button>
@@ -120,7 +120,7 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex" style="height: 100px;background: #125699;min-height: 50px;max-height: 145px;opacity: 1;"></div>
+        <div class="d-flex" style="height: 50px;background: #125699;min-height: 50px;max-height: 145px;opacity: 1;"></div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
